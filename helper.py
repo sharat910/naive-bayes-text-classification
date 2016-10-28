@@ -8,7 +8,7 @@ def remove_punctuation(s):
     return s.translate(table, string.punctuation)
 
 def remove_stop_words(words):
-    return [word for word in words if word not in set(stopwords.words('english'))]
+    return [word for word in words if word not in set(stopwords.words('english')) and len(word)>2]
 
 
 def tokenize(text):

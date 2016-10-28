@@ -16,9 +16,11 @@ with open('data.csv') as csvfile:
 
 random.shuffle(data)
 
-train_data = data[:200]
-test_data = data[200:]
+split = int(0.8*len(data))
+train_data = data[:split]
+test_data = data[split:]
 print len(test_data)
+print len(train_data)
 clf = Classifier(categories)
 
 #Training

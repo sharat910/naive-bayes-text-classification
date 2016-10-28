@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import requests
+import csv
 import spynner
 
 max_pages = 4
@@ -11,7 +11,8 @@ with open('data.csv', 'a') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     #writer.writeheader()
     while page_no <= max_pages:
-		url = 'http://ieeexplore.ieee.org/search/searchresult.jsp?queryText=signal%20processing&pageNumber=%d&rowsPerPage=10'%page_no
+		url = 'http://ieeexplore.ieee.org/search/searchresult.jsp?queryText=signal%20processing&pageNumber='+str(page_no)+'&rowsPerPage=10' 
+		page_no += 1
 		browser.load(url)
 		source_code = browser.html
 		plain_text = source_code.encode('utf-8')

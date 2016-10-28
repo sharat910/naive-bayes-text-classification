@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import csv
 import requests
 
-max_pages = 4
+max_pages = 3
 page_no = 1
 
 with open('data.csv', 'a') as csvfile:
@@ -10,7 +10,7 @@ with open('data.csv', 'a') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     #writer.writeheader()
     while page_no <= max_pages:
-		url = 'http://projectabstracts.com/tag/asp-net' + '/page/' + str(page_no) +'/'
+		url = 'http://projectabstracts.com/tag/building' + '/page/' + str(page_no) +'/'
 		page_no += 1
 		source_code = requests.get(url)
 		plain_text = source_code.text
@@ -28,4 +28,4 @@ with open('data.csv', 'a') as csvfile:
 			for para in paras:
 				s += para.text
 			abstract_text = s.split("\n")[0].encode('utf-8')
-			writer.writerow({'abstract':abstract_text,'category': "Software Design"})
+			writer.writerow({'abstract':abstract_text,'category': "Infrastructure"})
