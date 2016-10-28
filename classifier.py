@@ -57,7 +57,7 @@ class Classifier(object):
     def calc_p_w_given_category(self, w):
         p_w_given = {}
         for category in self.categories:
-            p_w_given[category] =  (10**4)*(self.word_counts[category].get(w, 0.0) + 1) / (sum(self.word_counts[category].values()) + sum(self.vocab.values()) + 1)
+            p_w_given[category] =  (10**4)*(self.word_counts[category].get(w, 0.0) + 1) / (sum(self.word_counts[category].values()) + sum(self.vocab.values()))
         return p_w_given
 
     def init_p_abstract_given_category(self):
@@ -69,5 +69,7 @@ class Classifier(object):
     def calc_posterior_prob(self, p_abstract_given):
         posterior_prob = {}
         for category in self.categories:
-            posterior_prob[category] = p_abstract_given[category]*self.prior_probs[category]*(10**9)
+        	posterior_prob[category] = p_abstract_given[category]*self.prior_probs[category]*(10**9)
+		print category 
+		print posterior_prob[category]
         return posterior_prob
